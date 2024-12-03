@@ -1,0 +1,49 @@
+version: "3.2"
+services:
+  app:
+    image: img-perpus-sansanstudy
+    container_name: perpus-sansanstudy
+    ports:
+      - 8000:9000
+    networks:
+      - weblaravel
+    depends_on:
+      - mydb
+    environment:
+      - DB_HOST=mydb
+      - DB_USERNAME=sansanstudy
+      - DB_DATABASE=perpusku_gc
+      - DB_PASSWORD=tsaniajuara1
+
+  mydb:
+    image: registry.adinusa.id/btacademy/mysql:5.7
+    container_name: mydb
+    ports:
+     - 3306:3306
+    networks:
+     - weblaravel
+    volumes:
+      - datadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: tsaniajuara1
+      MYSQL_USER: sansanstudy
+      MYSQL_PASSWORD: tsaniajuara1
+      MYSQL_DATABASE: perpusku_gc
+  web:
+    image: nginx:latest
+    container_name: myweb
+    ports:
+      - 8080:80
+    networks:
+      - weblaravel
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./:/var/www/html
+    depends_on:
+      - app
+
+volumes:
+  datadb:
+
+networks:
+  weblaravel:
