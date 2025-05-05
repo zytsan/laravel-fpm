@@ -6,10 +6,10 @@ cp .env.example .env
 
 php artisan key:generate
 
-sed -i 's/DB_HOST=.*/DB_HOST=mydb/' .env
-sed -i 's/DB_DATABASE=.*/DB_DATABASE=perpusku_gc/' .env
-sed -i 's/DB_USERNAME=.*/DB_USERNAME=sansanstudy/' .env
-sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=tsaniajuara1/' .env
+sed -i 's/DB_HOST=.*/DB_HOST=lara-db/' .env
+sed -i 's/DB_DATABASE=.*/DB_DATABASE=lara-db/' .env
+sed -i 's/DB_USERNAME=.*/DB_USERNAME=lara-user/' .env
+sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=lara-pass/' .env
 
 php artisan migrate
 php artisan db:seed
